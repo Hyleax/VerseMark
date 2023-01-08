@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {AiOutlineClose, AiOutlineMenu} from 'react-icons/ai'
+import {NavLink, Link} from 'react-router-dom'
 
 const Navbar = () => {
 
@@ -17,16 +18,19 @@ const Navbar = () => {
         event.target.innerHTML = "MV's"
     }
 
+
     return (
         <div className = ' flex justify-between items-center mx-auto bg-[#FFCCCC] shadow-md h-28'>
+            <Link to="/">
             <div className="w-full text-4xl font-bold p-7">VerseMark</div>
+            </Link>
 
             {/* basically saying anything ABOVE medium will cause it to display:flex */}
             <ul className="text-xl font-medium hidden md:flex">
-                <li className="px-9 py-11 hover:text-white hover:bg-black duration-150">Home</li>
-                <li onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave} className="px-9 py-11 hover:text-white hover:bg-black duration-150">MV's</li>
-                <li className="px-9 py-11 hover:text-white hover:bg-black duration-150">Bible</li>
-                <li className="px-9 py-11 hover:text-white hover:bg-black duration-150">About</li>
+                <NavLink to= "/" className="px-9 py-11 hover:text-white hover:bg-black duration-150">Home</NavLink>
+                <NavLink to= "" onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave} className="px-9 py-11 hover:text-white hover:bg-black duration-150">MV's</NavLink>
+                <NavLink to={"/bible"} className="px-9 py-11 hover:text-white hover:bg-black duration-150">Bible</NavLink>
+                <NavLink className="px-9 py-11 hover:text-white hover:bg-black duration-150">About</NavLink>
             </ul>
 
             <div onClick={handleNav} className = "block md:hidden p-5">
