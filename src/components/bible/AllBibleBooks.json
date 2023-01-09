@@ -1,0 +1,273 @@
+ [
+        {
+            "key": "Genesis",
+            "chapterNum": 50
+        },
+        {
+            "key": "Exodus",
+            "chapterNum": 40
+        },
+        {
+            "key": "Leviticus",
+            "chapterNum": 27
+        },
+        {
+            "key": "Numbers",
+            "chapterNum": 36
+        },
+        {
+            "key": "Deuteronomy",
+            "chapterNum": 34
+        },
+        {
+            "key": "Joshua",
+            "chapterNum": 24
+        },
+        {
+            "key": "Judges",
+            "chapterNum": 21 
+        },
+        {
+            "key": "Ruth",
+            "chapterNum": 4
+        },
+        {
+            "key": "1 Samuel",
+            "chapterNum": 31
+        },
+        {
+            "key": "2 Samuel",
+            "chapterNum": 24
+        }
+
+        ,
+        {
+            "key": "1 Kings",
+            "chapterNum": 22 
+        },
+        {
+            "key": "2 Kings",
+            "chapterNum": 25
+        },
+        {
+            "key": "1 Chronicles",
+            "chapterNum": 29
+        },
+        {
+            "key": "2 Chronicles",
+            "chapterNum": 36
+        },
+        {
+            "key": "Ezra",
+            "chapterNum": 10
+        },
+        {
+            "key": "Nehemiah",
+            "chapterNum": 13
+        },
+        {
+            "key": "Esther",
+            "chapterNum": 10
+        },
+        {
+            "key": "Job",
+            "chapterNum": 42
+        },
+        {
+            "key": "Psalms",
+            "chapterNum": 150
+        },
+        {
+            "key": "Proverbs",
+            "chapterNum": 31
+        }
+        ,
+        {
+            "key": "Ecclesiastes",
+            "chapterNum": 12
+        },
+        {
+            "key": "Song of Solomon",
+            "chapterNum": 8 
+        },
+        {
+            "key": "Isaiah",
+            "chapterNum": 66
+        },
+        {
+            "key": "Jeremiah",
+            "chapterNum": 52
+        },
+        {
+            "key": "Lamentations",
+            "chapterNum": 5
+        },
+        {
+            "key": "Ezekiel",
+            "chapterNum": 48
+        },
+        {
+            "key": "Daniel",
+            "chapterNum": 12
+        },
+        {
+            "key": "Hosea",
+            "chapterNum": 14
+        },
+        {
+            "key": "Joel",
+            "chapterNum": 3
+        },
+        {
+            "key": "Amos",
+            "chapterNum": 9
+        }
+        ,
+        {
+            "key": "Obadiah",
+            "chapterNum": 1
+        },
+        {
+            "key": "Jonah",
+            "chapterNum": 4
+        },
+        {
+            "key": "Micah",
+            "chapterNum": 7
+        },
+        {
+            "key": "Nahum",
+            "chapterNum": 3
+        },
+        {
+            "key": "Habakkuk",
+            "chapterNum": 3
+        },
+        {
+            "key": "Zephaniah",
+            "chapterNum": 3
+        },
+        {
+            "key": "Haggai",
+            "chapterNum": 2
+        },
+        {
+            "key": "Zechariah",
+            "chapterNum": 14
+        },
+        {
+            "key": "Malachi",
+            "chapterNum": 4
+        }
+        ,    
+        {
+            "key": "Matthew",
+            "chapterNum": 28
+        },
+        {
+            "key": "Mark",
+            "chapterNum": 16
+        },
+        {
+            "key": "Luke",
+            "chapterNum": 24
+        },
+        {
+            "key": "John",
+            "chapterNum": 21
+        },
+        {
+            "key": "Acts",
+            "chapterNum": 28
+        },
+        {
+            "key": "Romans",
+            "chapterNum": 16
+        },
+        {
+            "key": "1 Corinthians",
+            "chapterNum": 16
+        },
+        {
+            "key": "2 Corinthians",
+            "chapterNum": 13
+        },
+        {
+            "key": "Galatians",
+            "chapterNum": 6
+        },
+        {
+            "key": "Ephesians",
+            "chapterNum": 6
+        }
+        ,
+        {
+            "key": "Philippians",
+            "chapterNum": 4
+        },
+        {
+            "key": "Colossians",
+            "chapterNum": 4
+        },
+        {
+            "key": "1 Thessalonians",
+            "chapterNum": 5
+        },
+        {
+            "key": "2 Thessalonians",
+            "chapterNum": 3
+        },
+        {
+            "key": "1 Timothy",
+            "chapterNum": 6
+        },
+        {
+            "key": "2 Timothy",
+            "chapterNum": 4
+        },
+        {
+            "key": "Titus",
+            "chapterNum": 3
+        },
+        {
+            "key": "Philemon",
+            "chapterNum": 1
+        },
+        {
+            "key": "Hebrews",
+            "chapterNum": 13
+        },
+        {
+            "key": "James",
+            "chapterNum": 5
+        }
+        ,
+        {
+            "key": "1 Peter",
+            "chapterNum": 5
+        },
+        {
+            "key": "2 Peter",
+            "chapterNum": 3
+        },
+        {
+            "key": "1 John",
+            "chapterNum": 5
+        },
+        {
+            "key": "2 John",
+            "chapterNum": 1
+        },
+        {
+            "key": "3 John",
+            "chapterNum": 1
+        },
+        {
+            "key": "Jude",
+            "chapterNum": 1
+        },
+        {
+            "key": "Revelations",
+            "chapterNum": 22
+        }
+    ]

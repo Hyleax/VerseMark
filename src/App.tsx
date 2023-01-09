@@ -6,8 +6,9 @@ import Hero from './components/Hero'
 import HomeLinks from './components/HomeLinks'
 import Footer from './components/Footer'
 
+
 // importing React router
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 
 function App() {
   return(
