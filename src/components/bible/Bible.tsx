@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import BibleDropdown from './BibleDropdown'
 import {GrNext, GrPrevious} from 'react-icons/gr'
-import Footer from '../Footer'
 
 const Bible = () => {
   
@@ -24,6 +23,8 @@ const Bible = () => {
     verses: BibleVerseType[]
   }
 
+
+  // state variables
   const [haveData, updateHaveData] = useState(false)
   const [bibleBookData, setBibleBookData] = useState<BibleChapterType>({} as BibleChapterType)
   const [bibleBookName, setBibleBookName] = useState('Genesis')
@@ -32,8 +33,7 @@ const Bible = () => {
 
   let api = `https://bible-api.com/${bibleBookName} ${BibleChapterNum}`
   
-  
-  
+  // get data from Bible API
   useEffect(() => {
     (
       async () => {
@@ -45,15 +45,22 @@ const Bible = () => {
   }, [api])
 
 
+
+
  // destructuring bibleBook
  const {reference, verses} = bibleBookData
 
  let verseEls = verses?.map((v) => {
    const {verse, text} = v
-   return(<span key={verse} className="p-1 "> <b className='text-white text-3xl'>{verse}</b>  {text}</span>)
+   return(
+    <span 
+      key={verse} 
+      className="p-1"> 
+      <b className='text-white text-3xl pr-1'>{verse}</b>  
+      <span className='hover:text-red-400 duration-300'>{text}</span>
+    </span>
+  )
  })
-
- 
 
 
  // button functions
@@ -75,7 +82,7 @@ const Bible = () => {
         
         ?
           
-          <div className="text-white mb-12">
+          <div className="text-white mb-28">
             <button onClick={prevChapter} className="fixed top-[50%]  md:left-[7%] left-[10%]  border-2 border-black p-2 rounded-full bg-red-200 font-bold bg-opacity-70 hover:bg-red-300 active:bg-red-400 hover:text-white z-0">
               <GrPrevious size={50}/>
             </button>
@@ -112,8 +119,6 @@ const Bible = () => {
           <div className=" text-center text-white">Loading the Word of God...</div>
         </div>
         }
-
-        <Footer/>
       </div>
 
   

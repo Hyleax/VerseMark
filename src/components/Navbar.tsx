@@ -28,7 +28,7 @@ const Navbar = () => {
             {/* basically saying anything ABOVE medium will cause it to display:flex */}
             <ul className="text-xl font-medium hidden md:flex">
                 <NavLink to= "/" className="px-9 py-11 hover:text-white hover:bg-black duration-150">Home</NavLink>
-                <NavLink to= "" onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave} className="px-9 py-11 hover:text-white hover:bg-black duration-150">MV's</NavLink>
+                <NavLink to= "/savedverses" onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave} className="px-9 py-11 hover:text-white hover:bg-black duration-150">MV's</NavLink>
                 <NavLink to={"/bible"} className="px-9 py-11 hover:text-white hover:bg-black duration-150">Bible</NavLink>
                 <NavLink to={""} className="px-9 py-11 hover:text-white hover:bg-black duration-150">About</NavLink>
             </ul>
@@ -42,7 +42,9 @@ const Navbar = () => {
                     <li className="p-5 border-b border-gray-600">
                         <NavLink to={"/"}>Home</NavLink>
                     </li>
-                    <li className="p-5 border-b border-gray-600">Verses</li>
+                    <li className="p-5 border-b border-gray-600">
+                        <NavLink to={"/savedverses"}>MV's</NavLink>
+                    </li>
                     <li className="p-5 border-b border-gray-600">
                         <NavLink to={"/bible"}>Bible</NavLink>
                     </li>

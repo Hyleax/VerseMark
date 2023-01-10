@@ -9,6 +9,7 @@ import Footer from './components/Footer'
 
 // importing React router
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import SavedVerses from './components/SavedVerses/SavedVerses'
 
 function App() {
   return(
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route path='/' element= {<Home/>}/>
           <Route path='/bible' element = {<Bible/>}/>
+          <Route path='/savedverses' element = {<SavedVerses/>}/>
         </Routes>
     </Router>
   )

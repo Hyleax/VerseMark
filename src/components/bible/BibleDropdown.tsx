@@ -77,7 +77,7 @@ const chapterArray = Array.from({length: chapNums}, (_, i) => i + 1)
         
       isOpen &&
 
-      <div className="absolute z-10 top-[85px] bg-red-100 md:w-[570px] h-[500px] w-[300px] opacity-95 rounded-md text-black text-l p-5 grid md:grid-cols-2 grid-cols-1 ">
+      <div className="absolute z-10 top-[85px] bg-red-100 md:w-[750px] h-[500px] w-[300px] opacity-95 rounded-md text-black text-l p-5 grid md:grid-cols-2 grid-cols-1 ">
        
         <div className="text-center overflow-auto">
           <span className="underline font-bold">Books</span>
