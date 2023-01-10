@@ -26,13 +26,12 @@ const Bible = () => {
 
   const [haveData, updateHaveData] = useState(false)
   const [bibleBookData, setBibleBookData] = useState<BibleChapterType>({} as BibleChapterType)
-  const [bibleBookName, setBibleBookName] = useState('genesis')
+  const [bibleBookName, setBibleBookName] = useState('Genesis')
   const [BibleChapterNum, setBibleChapterNum] = useState(1)
  
 
   let api = `https://bible-api.com/${bibleBookName} ${BibleChapterNum}`
   
-  console.log(bibleBookData);
   
   
   useEffect(() => {
@@ -87,7 +86,11 @@ const Bible = () => {
 
           {/* Bible Dropdown */}
           <div className= "">
-            <BibleDropdown bibleBookName = {bibleBookName} setBibleBookName = {setBibleBookName}/>
+            <BibleDropdown 
+              bibleBookName = {bibleBookName} 
+              setBibleBookName = {setBibleBookName} 
+              setBibleChapterNum = {setBibleChapterNum}
+            />
           </div>
 
           {/* Chapter Name */}
