@@ -1,35 +1,23 @@
 import React, {useState, useEffect} from 'react'
 import BibleDropdown from './BibleDropdown'
 import {GrNext, GrPrevious} from 'react-icons/gr'
+import { VerseType, BibleChapterType } from '../types'
 
-const Bible = () => {
+
+type BibleProps = {
+  setSavedVerses: React.Dispatch<React.SetStateAction<VerseType[]>>
+}
+
+const Bible = ({ setSavedVerses }:BibleProps) => {
   
-  // type of the array of verses in bibleBook
-  type BibleVerseType = {
-    book_id: string
-    book_name: string
-    chapter: number
-    text: string
-    verse: number
-  }
-
-  // the type of a specifc bible
-  type BibleChapterType = {
-    reference: string
-    text: string
-    translation_id: string
-    translation_name: string
-    translation_note: string
-    verses: BibleVerseType[]
-  }
-
-
   // state variables
   const [haveData, updateHaveData] = useState(false)
   const [bibleBookData, setBibleBookData] = useState<BibleChapterType>({} as BibleChapterType)
   const [bibleBookName, setBibleBookName] = useState('Genesis')
   const [BibleChapterNum, setBibleChapterNum] = useState(1)
  
+  // use localstorage to get the last visited bible chapter
+
 
   let api = `https://bible-api.com/${bibleBookName} ${BibleChapterNum}`
   
@@ -50,14 +38,19 @@ const Bible = () => {
  // destructuring bibleBook
  const {reference, verses} = bibleBookData
 
+const saveVersesToLocalStorage = () => {
+
+}
+
  let verseEls = verses?.map((v) => {
    const {verse, text} = v
    return(
     <span 
+      onClick={saveVersesToLocalStorage}
       key={verse} 
-      className="p-1"> 
+      className="p-1  cursor-pointer hover:text-red-400"> 
       <b className='text-white text-3xl pr-1'>{verse}</b>  
-      <span className='hover:text-red-400 duration-300'>{text}</span>
+      <span className=' duration-300'>{text}</span>
     </span>
   )
  })
@@ -77,7 +70,7 @@ const Bible = () => {
   }
 
   return (    
-      <div className="">
+      <div className="bg-gradient-to-r">
         {haveData 
         
         ?
@@ -90,7 +83,6 @@ const Bible = () => {
               <GrNext size={50}/>
             </button>
 
-
           {/* Bible Dropdown */}
           <div className= "">
             <BibleDropdown 
@@ -99,6 +91,8 @@ const Bible = () => {
               setBibleChapterNum = {setBibleChapterNum}
             />
           </div>
+
+          
 
           {/* Chapter Name */}
           <div className="font-bold mb-5 text-center text-5xl underline">
