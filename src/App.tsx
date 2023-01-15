@@ -17,18 +17,46 @@ function App() {
   // state variable for saving verses
   const[savedVerses, setSavedVerses] = useState<VerseType[]>([])
 
+  const [bibleBookName, setBibleBookName] = useState(
+    () => {
+      if (localStorage.key(1)) {
+        const currentChapter = JSON.parse(localStorage.getItem('currentChapter')  || "") || [];
+        return currentChapter[0]
+      }
+
+      else {
+        return 'Genesis'
+      }
+    }
+  )
+  const [BibleChapterNum, setBibleChapterNum] = useState(() => {
+    if (localStorage.key(1)) {
+      const currentChapter = JSON.parse(localStorage.getItem('currentChapter')  || "") || [];
+      return currentChapter[1]
+    }
+
+    else {
+      return 1
+    }
+  })
+
   // retrieve items from local storage
-  // useEffect(() => {
-  //   const retrievedSavedVerses = JSON.parse(localStorage.getItem('verses') || "");
+  useEffect(() => {
+    if (localStorage.key(0)) {
+      const retrievedSavedVerses = JSON.parse(localStorage.getItem('savedVerses') || "") || [];
 
-  //   if (retrievedSavedVerses) {
-  //     setSavedVerses(retrievedSavedVerses)
-  //   }
-  // }, [])
-
+      if (retrievedSavedVerses) {
+        setSavedVerses(retrievedSavedVerses)
+      }
+  
+      else {
+        setSavedVerses([])
+      }
+    }
+  }, [])
 
   // pass savedVerses state variable to SavedVerses component
-  // pass setSavedVerses function to Bible component
+  // pass setSavedVerses function and savedVerses state array to Bible component
   return(
     <Router>
         <div className="App">
@@ -37,8 +65,18 @@ function App() {
 
         <Routes>
           <Route path='/' element= {<Home/>}/>
-          <Route path='/bible' element = {<Bible setSavedVerses = {setSavedVerses}/>}/>
-          <Route path='/savedverses' element = {<SavedVerses savedVerses = {savedVerses}/>}/>
+          <Route path='/bible' element = {
+            <Bible 
+              setSavedVerses = {setSavedVerses}
+              savedVerses = {savedVerses}
+              bibleBookName = {bibleBookName}
+              setBibleBookName= {setBibleBookName}
+              BibleChapterNum = {BibleChapterNum}
+              setBibleChapterNum = {setBibleChapterNum}
+            />
+          }
+          />
+          <Route path='/savedverses' element = {<SavedVerses savedVerses = {savedVerses} setSavedVerses = {setSavedVerses}/>}/>
         </Routes>
     </Router>
   )

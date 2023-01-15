@@ -5,33 +5,38 @@ import { VerseType } from '../types'
 
 type SavedVersesProps = {
     savedVerses: VerseType[]
+    setSavedVerses: React.Dispatch<React.SetStateAction<VerseType[]>>
 }
 
-function SavedVerses({ savedVerses }: SavedVersesProps) {
-    const [dropdownIsOpen, setDropdrownIsOpen] = useState(false)
+function SavedVerses({ savedVerses, setSavedVerses }: SavedVersesProps) {
+    
+    const deleteSavedVerse = (id: number) => {
+        setSavedVerses(savedVerses.filter((v) => {
+            return v.id !== id
+        }))
 
-
-    const handleDropdownClick = () => {
-        setDropdrownIsOpen(prev => !prev)
+    
+       
+        localStorage.setItem('savedVerses', JSON.stringify(savedVerses))
+        alert("Verse has been deleted")        
     }
+
+
+    let savedVerseEls = savedVerses.map((v) => {
+        return(
+            <Verse 
+                key={v.id} 
+                savedVerseDetails = {v} 
+                deleteSavedVerse = {deleteSavedVerse}/>)
+    })
 
     return (
         <div className='grid grid-cols-8 h-screen text-white'>
             <div className="md:col-span-6 col-span-8 md:overflow-auto">
-                <div className="font-bold mt-5 ">
+                <div className="font-bold mt-5">
                     <div className='text-3xl pb-20 text-center underline'>Marked Verses</div>
                     <div className="">
-                        <Verse/>
-                        <Verse/>
-                        <Verse/>
-                        <Verse/>
-                        <Verse/>
-                        <Verse/>
-                        <Verse/>
-                        <Verse/>
-                        <Verse/>
-
-
+                        {savedVerseEls}
                     </div>
                 
                 </div>

@@ -2,19 +2,24 @@ import React, {useState, useEffect} from 'react'
 import BibleDropdown from './BibleDropdown'
 import {GrNext, GrPrevious} from 'react-icons/gr'
 import { VerseType, BibleChapterType } from '../types'
+import SavedVerses from '../SavedVerses/SavedVerses'
 
 
 type BibleProps = {
   setSavedVerses: React.Dispatch<React.SetStateAction<VerseType[]>>
+  savedVerses: VerseType[]
+  bibleBookName: string
+  setBibleBookName: React.Dispatch<React.SetStateAction<string>>
+  BibleChapterNum: number
+  setBibleChapterNum: React.Dispatch<React.SetStateAction<number>>
 }
 
-const Bible = ({ setSavedVerses }:BibleProps) => {
+const Bible = ({ setSavedVerses , savedVerses, bibleBookName, setBibleBookName, BibleChapterNum, setBibleChapterNum}:BibleProps) => {
   
   // state variables
   const [haveData, updateHaveData] = useState(false)
   const [bibleBookData, setBibleBookData] = useState<BibleChapterType>({} as BibleChapterType)
-  const [bibleBookName, setBibleBookName] = useState('Genesis')
-  const [BibleChapterNum, setBibleChapterNum] = useState(1)
+  
  
   // use localstorage to get the last visited bible chapter
 
@@ -33,25 +38,52 @@ const Bible = ({ setSavedVerses }:BibleProps) => {
   }, [api])
 
 
+  // detect if bible chapter changes and set state to localstorage
+  useEffect(() => {
+    localStorage.setItem('currentChapter', JSON.stringify([bibleBookName, BibleChapterNum]))
+  }, [bibleBookName, BibleChapterNum])
 
+
+  
 
  // destructuring bibleBook
  const {reference, verses} = bibleBookData
 
-const saveVersesToLocalStorage = () => {
 
+// function to saved verse to local storage
+const saveVersesToLocalStorage = (verse: number, text: string) => {
+  
+  // get  current Date
+  const date = new Date()
+  
+
+  const savedVerseObject: VerseType = {
+    id: savedVerses.length + 1,
+  chapterName: reference,
+  verseNumber: verse,
+  verseText: text,
+  savedDate: date,
+  reasonForSaving: "have not implemented this feature yet"
+  }
+
+
+  setSavedVerses(prev => [...prev, savedVerseObject])  
+ 
+  localStorage.setItem('savedVerses', JSON.stringify(savedVerses))
+  const retrievedSavedVerses = JSON.parse(localStorage.getItem('savedVerses')|| "") || [];
+  alert(retrievedSavedVerses)
 }
 
  let verseEls = verses?.map((v) => {
    const {verse, text} = v
    return(
-    <span 
-      onClick={saveVersesToLocalStorage}
+    <div 
+      onClick={() => saveVersesToLocalStorage(verse, text)}
       key={verse} 
-      className="p-1  cursor-pointer hover:text-red-400"> 
-      <b className='text-white text-3xl pr-1'>{verse}</b>  
-      <span className=' duration-300'>{text}</span>
-    </span>
+      className="inline py-1 cursor-pointer text-red-300 hover:text-indigo-400 duration-200 md:text-2xl text-xl"> 
+        <span className='text-white font-bold pr-2 text-3xl'>{verse}</span>
+         {text}
+    </div>
   )
  })
 

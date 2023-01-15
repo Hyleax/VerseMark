@@ -1,8 +1,12 @@
+
+
+
 // type of a bible verse that will be saved to local storage
 export type VerseType = {
   id: number
   chapterName: string
   verseNumber: number
+  verseText: string
   savedDate: Date
   reasonForSaving: string
 }
