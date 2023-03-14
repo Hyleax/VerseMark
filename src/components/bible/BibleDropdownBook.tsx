@@ -11,6 +11,7 @@ const BibleDropdownBook = ({bookName, setBibleBookName, setBibleChapterNum}: Bib
     const handleClick = (e: any) => {
         setBibleBookName(e.target.innerHTML)
         setBibleChapterNum(1)
+        
     }
 
 

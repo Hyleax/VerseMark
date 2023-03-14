@@ -17,9 +17,8 @@ function App() {
   // state variable for saving verses
   const[savedVerses, setSavedVerses] = useState<VerseType[]>([])
 
-  const [bibleBookName, setBibleBookName] = useState(
-    () => {
-      if (localStorage.key(1)) {
+  const [bibleBookName, setBibleBookName] = useState<string>(() => {
+      if (localStorage.getItem('currentChapter') !== null) {
         const currentChapter = JSON.parse(localStorage.getItem('currentChapter')  || "") || [];
         return currentChapter[0]
       }
@@ -29,8 +28,8 @@ function App() {
       }
     }
   )
-  const [BibleChapterNum, setBibleChapterNum] = useState(() => {
-    if (localStorage.key(1)) {
+  const [BibleChapterNum, setBibleChapterNum] = useState<number>(() => {
+    if (localStorage.getItem('currentChapter') !== null) {
       const currentChapter = JSON.parse(localStorage.getItem('currentChapter')  || "") || [];
       return currentChapter[1]
     }
@@ -42,21 +41,22 @@ function App() {
 
   // retrieve items from local storage
   useEffect(() => {
-    if (localStorage.key(0)) {
-      const retrievedSavedVerses = JSON.parse(localStorage.getItem('savedVerses') || "") || [];
+    if (localStorage.getItem('savedVerses') !== null) {
+      const retrievedSavedVerses: VerseType[] = JSON.parse(localStorage.getItem('savedVerses') || "");
 
       if (retrievedSavedVerses) {
         setSavedVerses(retrievedSavedVerses)
       }
-  
-      else {
-        setSavedVerses([])
-      }
+    }
+
+    else {
+      localStorage.setItem('savedVerses', JSON.stringify([]))
     }
   }, [])
 
-  // pass savedVerses state variable to SavedVerses component
-  // pass setSavedVerses function and savedVerses state array to Bible component
+  
+
+
   return(
     <Router>
         <div className="App">

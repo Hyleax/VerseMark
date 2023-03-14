@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react'
 import BibleDropdown from './BibleDropdown'
 import {GrNext, GrPrevious} from 'react-icons/gr'
 import { VerseType, BibleChapterType } from '../types'
-import SavedVerses from '../SavedVerses/SavedVerses'
 
 
 type BibleProps = {
@@ -20,8 +19,7 @@ const Bible = ({ setSavedVerses , savedVerses, bibleBookName, setBibleBookName, 
   const [haveData, updateHaveData] = useState(false)
   const [bibleBookData, setBibleBookData] = useState<BibleChapterType>({} as BibleChapterType)
   
- 
-  // use localstorage to get the last visited bible chapter
+
 
 
   let api = `https://bible-api.com/${bibleBookName} ${BibleChapterNum}`
@@ -56,23 +54,24 @@ const saveVersesToLocalStorage = (verse: number, text: string) => {
   // get  current Date
   const date = new Date()
   
-
   const savedVerseObject: VerseType = {
     id: savedVerses.length + 1,
-  chapterName: reference,
-  verseNumber: verse,
-  verseText: text,
-  savedDate: date,
-  reasonForSaving: "have not implemented this feature yet"
+    chapterName: reference,
+    verseNumber: verse,
+    verseText: text,
+    savedDate: date,
+    reasonForSaving: "have not implemented this feature yet"
   }
 
+  
+  setSavedVerses(prev => [...prev, savedVerseObject])
 
-  setSavedVerses(prev => [...prev, savedVerseObject])  
- 
   localStorage.setItem('savedVerses', JSON.stringify(savedVerses))
   const retrievedSavedVerses = JSON.parse(localStorage.getItem('savedVerses')|| "") || [];
   alert(retrievedSavedVerses)
 }
+
+
 
  let verseEls = verses?.map((v) => {
    const {verse, text} = v
