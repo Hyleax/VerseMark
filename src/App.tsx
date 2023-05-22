@@ -8,7 +8,7 @@ import Footer from './components/Footer'
 import { VerseType } from './components/types'
 
 // importing React router
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import { Router, Routes, Route} from 'react-router-dom'
 import SavedVerses from './components/SavedVerses/SavedVerses'
 
 function App() {
@@ -58,12 +58,9 @@ function App() {
 
 
   return(
-    <Router>
         <div className="App">
           <Navbar/>
-        </div>
-
-        <Routes>
+          <Routes>
           <Route path='/' element= {<Home/>}/>
           <Route path='/bible' element = {
             <Bible 
@@ -78,7 +75,10 @@ function App() {
           />
           <Route path='/savedverses' element = {<SavedVerses savedVerses = {savedVerses} setSavedVerses = {setSavedVerses}/>}/>
         </Routes>
-    </Router>
+        </div>
+
+        
+  
   )
 }
 
