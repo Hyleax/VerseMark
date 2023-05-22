@@ -1,11 +1,16 @@
 import React from 'react'
 
-function VerseInfo() {
+type verseInfoProps = {
+  selectedDate: Date | null
+}
+
+const VerseInfo = ({ selectedDate }: verseInfoProps) => {
+
   return (
     <div className='text-center'>
         <div className=" mb-[80px]">
             <div className="underline text-2xl p-3 row-span-3 mb-3">Saved on</div>
-            <div className="md:text-3xl text-2xl text-red-400 px-2">15th February 2023</div>
+            <div className="md:text-3xl text-2xl text-red-400 px-2">{selectedDate && String(selectedDate)}</div>
         </div>
         
         <div className="">

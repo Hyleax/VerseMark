@@ -11,7 +11,7 @@ const Navbar = () => {
     }
 
     const handleMouseOver = (event: any) => {
-        event.target.innerHTML = "Marked_Verses"  
+        event.target.innerHTML = "Marked Verses"  
     }
 
     const handleMouseLeave = (event: any) => {
@@ -20,7 +20,7 @@ const Navbar = () => {
 
 
     return (
-        <div className = 'rounded flex justify-between items-center mx-auto bg-[#FFCCCC] shadow-md h-28'>
+        <div className = 'rounded flex justify-between items-center mx-auto bg-[#FFCCCC] shadow-md h-28 fixed w-[100%] z-20'>
             <Link to="/">
             <div className="w-full text-4xl font-bold p-7">VerseMark</div>
             </Link>
@@ -33,11 +33,11 @@ const Navbar = () => {
                 <NavLink to={""} className="px-9 py-11 hover:text-white hover:bg-black duration-150">About</NavLink>
             </ul>
 
-            <div onClick={handleNav} className = "block md:hidden p-5">
+            <div onClick={handleNav} className = "block md:hidden p-5 ">
                 {nav ? <AiOutlineClose size={40}/> : <AiOutlineMenu size={40}/>}
             </div>
 
-            <div className={nav ? "fixed left-0 top-28 w-[60%] h-full border-r bg-[#FFCCCC] bg-opacity-90 ease-in-out duration-500 md:hidden" : "fixed left-[-100%]"}>          
+            <div className={nav ? "fixed z-10 left-0 top-28 w-[60%] h-full border-r bg-[#FFCCCC] bg-opacity-90 ease-in-out duration-500 md:hidden" : "fixed left-[-100%]"}>          
                 <ul className='p-4 uppercase font-bold text-xl'>
                     <li className="p-5 border-b border-gray-600">
                         <NavLink to={"/"}>Home</NavLink>

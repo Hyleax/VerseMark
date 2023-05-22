@@ -17,7 +17,7 @@ const BibleDropdownBook = ({bookName, setBibleBookName, setBibleChapterNum}: Bib
 
     return (
         <div>
-            <button onClick={handleClick} className='bg-red-200 w-[90%] py-1 my-1 rounded-md hover:bg-red-300 active:bg-red-400'>
+            <button onClick={handleClick} className='bg-red-200 w-[90%] py-3 my-1 rounded-md hover:bg-red-300 active:bg-red-400'>
                 {bookName}
             </button>
         </div>

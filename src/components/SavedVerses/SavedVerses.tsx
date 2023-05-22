@@ -8,25 +8,34 @@ type SavedVersesProps = {
     setSavedVerses: React.Dispatch<React.SetStateAction<VerseType[]>>
 }
 
-function SavedVerses({ savedVerses, setSavedVerses }: SavedVersesProps) {
+const SavedVerses = ({ savedVerses, setSavedVerses }: SavedVersesProps) => {
     
-    const deleteSavedVerse = (id: number) => {
+    const [selectedDate, setSelectedDate] = useState<Date | null>(null)
+
+    useEffect(()=> {
+        if (savedVerses.length >= 1) {
+            localStorage.setItem('savedVerses', JSON.stringify(savedVerses))
+        }
+    }, [savedVerses])
+
+    const deleteSavedVerse = (id: string) => {
         setSavedVerses(savedVerses.filter((v) => {
             return v.id !== id
-        }))
-
-    
-       
-        localStorage.setItem('savedVerses', JSON.stringify(savedVerses))
-        alert("Verse has been deleted")        
+        })) 
     }
 
+    const selectVerse = (id: string) => {
+        const verses = savedVerses.filter(v => v.id === id)
+        setSelectedDate(verses[0].savedDate)
+    }
+    
 
     let savedVerseEls = savedVerses.map((v) => {
         return(
             <Verse 
                 key={v.id} 
                 savedVerseDetails = {v} 
+                selectVerse = {selectVerse}
                 deleteSavedVerse = {deleteSavedVerse}/>)
     })
 
@@ -44,7 +53,7 @@ function SavedVerses({ savedVerses, setSavedVerses }: SavedVersesProps) {
             <div className="md:col-span-2 col-span-8 border-l-2 border-red-200">
                 <div className="text-3xl font-bold mt-5 text-center pb-20 underline">Verse Info</div>
                 <div className="">
-                    <VerseInfo/>
+                    <VerseInfo selectedDate={selectedDate}/>
                 </div>
             </div>
         </div>

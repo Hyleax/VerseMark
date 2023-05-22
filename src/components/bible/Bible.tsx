@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useId} from 'react'
 import BibleDropdown from './BibleDropdown'
 import {GrNext, GrPrevious} from 'react-icons/gr'
 import { VerseType, BibleChapterType } from '../types'
-
+import SavedVerses from '../SavedVerses/SavedVerses'
+import { v4 as uuidv4 } from 'uuid';
 
 type BibleProps = {
   setSavedVerses: React.Dispatch<React.SetStateAction<VerseType[]>>
@@ -22,7 +23,7 @@ const Bible = ({ setSavedVerses , savedVerses, bibleBookName, setBibleBookName, 
 
 
 
-  let api = `https://bible-api.com/${bibleBookName} ${BibleChapterNum}`
+  let api = `https://bible-api.com/${bibleBookName} ${BibleChapterNum}?translation=kjv`
   
   // get data from Bible API
   useEffect(() => {
@@ -35,10 +36,19 @@ const Bible = ({ setSavedVerses , savedVerses, bibleBookName, setBibleBookName, 
     )()
   }, [api])
 
+  // add to array in localstorage if savedVerses state is not empty
+  useEffect(() => {
+    if (savedVerses.length >= 1) {
+      localStorage.setItem('savedVerses', JSON.stringify(savedVerses))
+    }
+  }, [savedVerses])
+
 
   // detect if bible chapter changes and set state to localstorage
   useEffect(() => {
-    localStorage.setItem('currentChapter', JSON.stringify([bibleBookName, BibleChapterNum]))
+
+      localStorage.setItem('currentChapter', JSON.stringify([bibleBookName, BibleChapterNum]))
+    
   }, [bibleBookName, BibleChapterNum])
 
 
@@ -49,13 +59,12 @@ const Bible = ({ setSavedVerses , savedVerses, bibleBookName, setBibleBookName, 
 
 
 // function to saved verse to local storage
-const saveVersesToLocalStorage = (verse: number, text: string) => {
+const saveVersesToLocalStorage = (verse: number, text: string, uID:string) => {
   
   // get  current Date
   const date = new Date()
-  
   const savedVerseObject: VerseType = {
-    id: savedVerses.length + 1,
+    id: uID,
     chapterName: reference,
     verseNumber: verse,
     verseText: text,
@@ -64,20 +73,19 @@ const saveVersesToLocalStorage = (verse: number, text: string) => {
   }
 
   
-  setSavedVerses(prev => [...prev, savedVerseObject])
-
-  localStorage.setItem('savedVerses', JSON.stringify(savedVerses))
-  const retrievedSavedVerses = JSON.parse(localStorage.getItem('savedVerses')|| "") || [];
-  alert(retrievedSavedVerses)
+  setSavedVerses(prev => [...prev, savedVerseObject]) 
+  alert(`${reference}: ${verse} has been saved`)    
 }
 
 
 
  let verseEls = verses?.map((v) => {
    const {verse, text} = v
+
+   const uniqueID = uuidv4();
    return(
     <div 
-      onClick={() => saveVersesToLocalStorage(verse, text)}
+      onClick={() => saveVersesToLocalStorage(verse, text, uniqueID)}
       key={verse} 
       className="inline py-1 cursor-pointer text-red-300 hover:text-indigo-400 duration-200 md:text-2xl text-xl"> 
         <span className='text-white font-bold pr-2 text-3xl'>{verse}</span>
@@ -106,11 +114,11 @@ const saveVersesToLocalStorage = (verse: number, text: string) => {
         
         ?
           
-          <div className="text-white mb-28">
-            <button onClick={prevChapter} className="fixed top-[50%]  md:left-[7%] left-[10%]  border-2 border-black p-2 rounded-full bg-red-200 font-bold bg-opacity-70 hover:bg-red-300 active:bg-red-400 hover:text-white z-0">
+          <div className="text-white">
+            <button onClick={prevChapter} className="fixed md:top-[50%] top-[87%] left-[7%]  border-2 border-black p-2 rounded-full bg-red-200 font-bold bg-opacity-70 hover:bg-red-300 active:bg-red-400 hover:text-white z-0">
               <GrPrevious size={50}/>
             </button>
-            <button onClick={nextChapter} className="fixed top-[50%]  md:right-[7%] right-[10%]  border-2 border-black p-2 rounded-full bg-red-200 font-bold bg-opacity-70 hover:bg-red-300 active:bg-red-400 hover:text-white">
+            <button onClick={nextChapter} className="fixed md:top-[50%] top-[87%] right-[7%]  border-2 border-black p-2 rounded-full bg-red-200 font-bold bg-opacity-70 hover:bg-red-300 active:bg-red-400 hover:text-white">
               <GrNext size={50}/>
             </button>
 
@@ -126,13 +134,13 @@ const saveVersesToLocalStorage = (verse: number, text: string) => {
           
 
           {/* Chapter Name */}
-          <div className="font-bold mb-5 text-center text-5xl underline">
+          <div className="font-bold mb-5 text-center text-5xl underline mt-[250px]">
             {reference}
           </div>
 
           {/* Bible Verses */}
           <div className="flex justify-center z-10">
-            <div className="lg:w-[55%] md:w-[75%] w-[90%] text-2xl md:text-2xl p-5 text-red-100">
+            <div className="lg:w-[55%] md:w-[75%] w-[90%] text-2xl md:text-2xl p-2 text-red-100">
             {verseEls}
             </div>
           </div>

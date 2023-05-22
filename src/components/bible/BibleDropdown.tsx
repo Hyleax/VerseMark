@@ -53,7 +53,7 @@ const chapterArray = Array.from({length: chapNums}, (_, i) => i + 1)
     <div className='relative mb-20 flex items-center justify-center pt-10'>
 
       {/* Dropdown button */}
-      <button onClick={() => setIsOpen(prev => !prev)} className='flex  items-center bg-red-100 text-2xl px-2 py-1 rounded-md font-bold text-black active:bg-white duration-300'>
+      <button onClick={() => setIsOpen(prev => !prev)} className='fixed mt-[15rem] flex  items-center bg-red-100 text-2xl px-2 py-1 rounded-md font-bold text-black active:bg-white duration-300 z-0'>
         <div className="mr-7 ml-2">{bibleBookName}</div>
 
         <div className="">
@@ -72,16 +72,16 @@ const chapterArray = Array.from({length: chapNums}, (_, i) => i + 1)
       </button>
 
 
-        {/* Dropdown conten */}
+        {/* Dropdown content */}
       {
         
       isOpen &&
 
-      <div className="absolute z-10 top-[85px] bg-red-100 md:w-[750px] h-[500px] w-[300px] opacity-95 rounded-md text-black text-l p-5 grid md:grid-cols-2 grid-cols-1 ">
+      <div className="fixed z-10 top-[190px] bg-red-100 md:w-[900px] h-[650px] w-[350px] opacity-95 rounded-md text-black text-l p-5 grid md:grid-cols-2 grid-cols-1 ">
        
         <div className="text-center overflow-auto">
           <span className="underline font-bold">Books</span>
-          <div className="flex flex-col pt-2">
+          <div className="flex flex-col py-5">
             {BibleBookEls}
           </div>
         </div>
